@@ -158,7 +158,7 @@ function App() {
   };
 
   return (
-    <div className="w-full h-full overflow-hidden relative">
+    <div className="w-screen h-screen overflow-hidden relative">
       <div
         ref={mapContainer}
         className="w-full h-full"
