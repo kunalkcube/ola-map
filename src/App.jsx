@@ -107,6 +107,7 @@ function App() {
     setAutocompleteResults([]);
     if (marker) {
       marker.remove();
+      setMarker(null);
     }
   };
 
@@ -114,6 +115,11 @@ function App() {
     e.preventDefault();
     if (selectedPlace) {
       const { lat, lng } = selectedPlace.geometry.location;
+
+      if (marker) {
+        return;
+      }
+
       const newMarker = new Marker().setLngLat([lng, lat]).addTo(map);
       setMarker(newMarker);
       map.flyTo({ center: [lng, lat], zoom: 14 });
