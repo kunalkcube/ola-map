@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Map as MapLibreMap, NavigationControl, Marker } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import OlaMapsClient from 'ola-map-sdk';
-import { MdOutlineMyLocation } from "react-icons/md";
+import DistanceDuration from "./components/DistanceDuration";
+import RecenterButton from "./components/RecenterButton";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const STYLE_NAME = "vintage-light";
@@ -13,6 +14,7 @@ function App() {
   const [autocompleteResults, setAutocompleteResults] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [distance, setDistance] = useState("");
+  const [duration, setDuration] = useState("");
   const [marker, setMarker] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const mapContainer = useRef(null);
@@ -109,6 +111,9 @@ function App() {
       marker.remove();
       setMarker(null);
     }
+
+    setDistance("");
+    setDuration("");
   };
 
   const handleFormSubmit = async (e) => {
@@ -117,6 +122,7 @@ function App() {
       const { lat, lng } = selectedPlace.geometry.location;
 
       if (marker) {
+        map.flyTo({ center: [lng, lat], zoom: 14 });
         return;
       }
 
@@ -143,7 +149,8 @@ function App() {
                 traffic_metadata: false
               }
             );
-            setDistance(`Distance ${result.routes[0].legs[0].readable_distance} km`);
+            setDistance(`${result.routes[0].legs[0].readable_distance} km`);
+            setDuration(`${result.routes[0].legs[0].readable_duration}`);
           } catch (error) {
             console.error('Error fetching directions:', error);
           }
@@ -199,14 +206,8 @@ function App() {
           </div>
         </section>
       </div>
-      {distance && <div id="distance-display" className="absolute bottom-4 left-1/2 transform -translate-x-1/2 py-2 px-4 mx-auto rounded-md text-gray-800 bg-white/10 backdrop-blur-md w-fit">{distance}</div>}
-      <button
-        onClick={handleRecenter}
-        className="absolute bottom-10 right-4 p-2 bg-white/10 backdrop-blur-md rounded-full shadow-md hover:bg-white/50 focus:outline-none"
-        aria-label="Recenter map on current location"
-      >
-        <MdOutlineMyLocation size={24} color="#333" />
-      </button>
+      <DistanceDuration distance={distance} duration={duration} />
+      <RecenterButton handleRecenter={handleRecenter} />
     </div>
   );
 }
