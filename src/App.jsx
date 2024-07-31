@@ -116,6 +116,7 @@ function App() {
       const { lat, lng } = selectedPlace.geometry.location;
       const newMarker = new Marker().setLngLat([lng, lat]).addTo(map);
       setMarker(newMarker);
+      map.flyTo({ center: [lng, lat], zoom: 14 });
 
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(async (position) => {
