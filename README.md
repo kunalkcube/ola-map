@@ -1,6 +1,6 @@
 # Ola Map
 
-This project is a React JS application that integrates with the Ola Maps API to provide place autocomplete and directions functionalities. The app displays a map using MapLibre and allows users to search for places, see autocomplete suggestions, and get directions to a selected place.
+This project is a React JS application that integrates with the Ola Maps API using the ola-map-sdk to provide place autocomplete and directions functionalities. The app displays a map using MapLibre and allows users to search for places, see autocomplete suggestions, and get directions to a selected place.
 
 ## Features
 
