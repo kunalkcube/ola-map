@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Map as MapLibreMap, NavigationControl, Marker } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import OlaMapsClient from 'ola-map-sdk';
@@ -6,7 +6,7 @@ import DistanceDuration from "./components/DistanceDuration";
 import RecenterButton from "./components/RecenterButton";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
-const STYLE_NAME = "vintage-light";
+const STYLE_NAME = "default-light-standard";
 
 function App() {
   const [map, setMap] = useState(null);
@@ -31,8 +31,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const client = new OlaMapsClient(API_KEY);
-
     const fetchStyleURL = async () => {
       try {
         const styleURL = `https://api.olamaps.io/tiles/vector/v1/styles/${STYLE_NAME}/style.json`;
