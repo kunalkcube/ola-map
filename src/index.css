@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* MapLibre popup – Google Maps-like styling */
+.maplibregl-popup-content {
+  border-radius: 14px !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+  padding: 6px !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.maplibregl-popup-close-button {
+  font-size: 18px;
+  color: #9ca3af;
+  padding: 4px 8px;
+  right: 2px;
+  top: 2px;
+}
+
+.maplibregl-popup-close-button:hover {
+  color: #374151;
+  background: transparent;
+}
+
+.maplibregl-popup-tip {
+  border-top-color: white !important;
+}
+
+/* Marker cursor  */
+.maplibregl-marker {
+  cursor: pointer !important;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}

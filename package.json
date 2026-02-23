@@ -13,7 +13,7 @@
     "@deck.gl/react": "^9.0.21",
     "@maplibre/maplibre-gl-directions": "^0.7.0",
     "maplibre-gl": "^4.5.0",
-    "ola-map-sdk": "^1.1.5",
+    "ola-map-sdk": "^1.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
